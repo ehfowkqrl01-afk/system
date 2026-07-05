@@ -1,0 +1,5 @@
+.env
+.env.*
+config.js
+desktop.ini
+Thumbs.db
