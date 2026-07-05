@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="시스템 에어컨 공간 설계부터 설치, A/S까지. 주거·상업 공간 맞춤 냉난방 솔루션을 제공합니다.">
-  <title>시스템 에어컨 공간 설계 &amp; 설치 | COOLSPACE</title>
+  <title>시스템 에어컨 공간 설계 &amp; 설치 | STAR Logis</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +15,7 @@
     <div class="container header-inner">
       <a href="#home" class="logo">
         <span class="logo-icon" aria-hidden="true">❄</span>
-        COOL<span>SPACE</span>
+        STAR<span>Logis</span>
       </a>
       <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
         <span></span>
@@ -265,7 +265,7 @@
             </div>
           </article>
           <article class="portfolio-item">
-            <img class="portfolio-img" src="images/portfolio-cafe.jpg" alt="카페 오픈형 공간 덕트형 에어컨 시공" loading="lazy">
+            <img class="portfolio-img" src="images/portfolio-cafe.jpg" alt="오픈형 카페 천장 덕트·환기 배관 시공 완료" loading="lazy">
             <div class="portfolio-info">
               <span class="portfolio-tag">카페</span>
               <h3>오픈형 카페 덕트형 시공</h3>
@@ -332,8 +332,8 @@
       <div class="container">
         <div class="benefits-grid">
           <div class="benefits-text">
-            <span class="section-label">WHY COOLSPACE</span>
-            <h2>COOLSPACE를<br>선택하는 이유</h2>
+            <span class="section-label">WHY STAR LOGIS</span>
+            <h2>STAR Logis를<br>선택하는 이유</h2>
           </div>
           <div class="benefits-cards">
             <div class="benefit-card">
@@ -459,7 +459,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="#home" class="logo">COOL<span>SPACE</span></a>
+        <a href="#home" class="logo">STAR<span>Logis</span></a>
         <p>시스템 에어컨 공간 설계 · 설치 · A/S 전문</p>
       </div>
       <div class="footer-links">
@@ -469,7 +469,7 @@
         <a href="#gallery">갤러리</a>
         <a href="#contact">문의</a>
       </div>
-      <p class="footer-copy">&copy; 2026 COOLSPACE. All rights reserved. · 사진: Unsplash, Pexels (무료 라이선스)</p>
+      <p class="footer-copy">&copy; 2026 STAR Logis. All rights reserved. · 사진: Unsplash, Pexels (무료 라이선스)</p>
     </div>
   </footer>
 
@@ -479,6 +479,69 @@
     </svg>
   </button>
 
+  <!-- AI 챗봇 (OpenAI GPT API) -->
+  <div class="chatbot" id="chatbot">
+    <button class="chatbot-toggle" id="chatbotToggle" type="button" aria-label="AI 상담 열기" aria-expanded="false" aria-controls="chatbotPanel">
+      <svg class="chatbot-toggle-icon chatbot-toggle-icon--open" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+      </svg>
+      <svg class="chatbot-toggle-icon chatbot-toggle-icon--close" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+
+    <div class="chatbot-panel" id="chatbotPanel" aria-hidden="true" role="dialog" aria-labelledby="chatbotTitle">
+      <header class="chatbot-header">
+        <div class="chatbot-header-text">
+          <p class="chatbot-badge">GPT AI</p>
+          <h3 id="chatbotTitle">STAR Logis AI 상담</h3>
+        </div>
+        <button class="chatbot-settings-btn" id="chatbotSettingsBtn" type="button" aria-label="API 설정" title="API 설정">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </button>
+      </header>
+
+      <div class="chatbot-setup" id="chatbotSetup">
+        <p class="chatbot-setup-title">OpenAI API 키 설정</p>
+        <p class="chatbot-setup-desc">GPT API 키를 입력하면 시스템 에어컨 설계·설치·견적 상담을 AI가 도와드립니다.</p>
+        <label class="chatbot-label" for="chatbotApiKey">API Key</label>
+        <input class="chatbot-input" type="password" id="chatbotApiKey" placeholder="sk-..." autocomplete="off">
+        <label class="chatbot-label" for="chatbotModel">모델</label>
+        <select class="chatbot-input" id="chatbotModel">
+          <option value="gpt-4o-mini" selected>gpt-4o-mini (추천)</option>
+          <option value="gpt-4o">gpt-4o</option>
+          <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+        </select>
+        <label class="chatbot-label" for="chatbotProxyUrl">프록시 URL <span class="chatbot-label-note">(선택, CORS 오류 시)</span></label>
+        <input class="chatbot-input" type="url" id="chatbotProxyUrl" placeholder="http://localhost:3001/api/chat">
+        <button class="btn btn-primary btn-full chatbot-save-btn" id="chatbotSaveKey" type="button">저장하고 시작하기</button>
+        <p class="chatbot-setup-note">API 키는 브라우저 localStorage에만 저장됩니다. GitHub Pages 배포 시 <code>node chat-proxy.mjs</code> 프록시 사용을 권장합니다.</p>
+      </div>
+
+      <div class="chatbot-body" id="chatbotBody" hidden>
+        <div class="chatbot-messages" id="chatbotMessages" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <div class="chatbot-suggestions" id="chatbotSuggestions">
+          <button type="button" class="chatbot-chip" data-prompt="아파트 30평 시스템 에어컨 견적이 궁금해요">30평 견적</button>
+          <button type="button" class="chatbot-chip" data-prompt="천장형과 벽걸이 차이 알려줘">천장형 vs 벽걸이</button>
+          <button type="button" class="chatbot-chip" data-prompt="설치 기간은 얼마나 걸리나요?">설치 기간</button>
+        </div>
+        <form class="chatbot-form" id="chatbotForm">
+          <textarea class="chatbot-textarea" id="chatbotInput" rows="1" placeholder="공간 규모, 설치 문의 등 무엇이든 물어보세요..." maxlength="500" required></textarea>
+          <button class="chatbot-send" id="chatbotSend" type="submit" aria-label="메시지 보내기">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    GPT API 키 설정 방법 (택 1):
+    1) config.example.js 를 config.js 로 복사 후 apiKey 입력 → 아래 주석 해제
+    2) 챗봇 우측 하단 버튼 → 설정 화면에서 sk- 키 직접 입력
+  -->
+  <!-- <script src="config.js"></script> -->
   <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
