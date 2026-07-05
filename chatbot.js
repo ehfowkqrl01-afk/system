@@ -1,8 +1,8 @@
 (function () {
   "use strict";
 
-  var STORAGE_KEY = "starlogis-chatbot-config";
   var OPENAI_URL = "https://api.openai.com/v1/chat/completions";
+  var api = window.StarLogisAPI;
 
   var chatbot = document.getElementById("chatbot");
   var chatbotToggle = document.getElementById("chatbotToggle");
@@ -20,9 +20,9 @@
   var chatbotSettingsBtn = document.getElementById("chatbotSettingsBtn");
   var chatbotSuggestions = document.getElementById("chatbotSuggestions");
 
-  if (!chatbot || !chatbotToggle) return;
+  if (!chatbot || !chatbotToggle || !api) return;
 
-  var config = loadConfig();
+  var config = api.loadConfig();
   var messages = [];
   var isLoading = false;
 
@@ -38,31 +38,18 @@
     "진행 과정: 무료 상담·실측 → 설계·견적 → 계약 → 시공 → 인수·사후관리\n" +
     "가정 2~3대: 1~2일, 상업 공간: 3~7일\n" +
     "견적·실측 상담 무료, 시공 품질 보증 2년\n" +
-    "연락: 1588-0000, 평일 09:00–18:00 (토 09:00–13:00), 수도권 전역";
+    "연락: 010-5257-1534, 평일 09:00–18:00 (토 09:00–13:00), 서비스 지역: 대구 · 경북 · 그외 지역 협의";
 
   function loadConfig() {
-    var saved = {};
-    try {
-      saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-    } catch (e) {
-      saved = {};
-    }
-
-    var external = window.CHATBOT_CONFIG || {};
-    return {
-      apiKey: external.apiKey || saved.apiKey || "",
-      model: external.model || saved.model || "gpt-4o-mini",
-      proxyUrl: external.proxyUrl || saved.proxyUrl || ""
-    };
+    return api.loadConfig();
   }
 
   function saveConfig() {
-    config = {
+    config = api.saveConfig({
       apiKey: chatbotApiKey.value.trim(),
       model: chatbotModel.value,
       proxyUrl: chatbotProxyUrl.value.trim()
-    };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    });
     showChatView();
     appendMessage(
       "assistant",
@@ -72,7 +59,19 @@
   }
 
   function hasValidConfig() {
-    return Boolean(config.apiKey && config.apiKey.startsWith("sk-"));
+    return api.hasValidConfig(config);
+  }
+
+  function closeImagegenPanel() {
+    var imagegenPanel = document.getElementById("imagegenPanel");
+    var imagegenToggle = document.getElementById("imagegenToggle");
+    if (!imagegenPanel || !imagegenPanel.classList.contains("open")) return;
+    imagegenPanel.classList.remove("open");
+    if (imagegenToggle) {
+      imagegenToggle.classList.remove("open");
+      imagegenToggle.setAttribute("aria-expanded", "false");
+    }
+    imagegenPanel.setAttribute("aria-hidden", "true");
   }
 
   function showSetupView() {
@@ -96,6 +95,7 @@
     chatbotPanel.setAttribute("aria-hidden", String(!isOpen));
 
     if (isOpen) {
+      closeImagegenPanel();
       if (hasValidConfig()) {
         showChatView();
         if (messages.length === 0) {
@@ -186,19 +186,26 @@
       max_tokens: 600
     };
 
-    if (config.proxyUrl) {
-      var proxyRes = await fetch(config.proxyUrl, {
+    var chatProxyUrl = api.getChatProxyUrl ? api.getChatProxyUrl(config) : config.proxyUrl;
+
+    if (chatProxyUrl) {
+      var proxyRes = await fetch(chatProxyUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(Object.assign({ apiKey: config.apiKey }, payload))
       });
 
+      var proxyData = await proxyRes.json().catch(function () { return null; });
+
       if (!proxyRes.ok) {
-        var proxyErr = await proxyRes.json().catch(function () { return {}; });
-        throw new Error(proxyErr.error || "프록시 서버 오류 (" + proxyRes.status + ")");
+        throw new Error(
+          api.parseApiError
+            ? api.parseApiError(proxyData, "프록시 서버 오류 (" + proxyRes.status + ")")
+            : "프록시 서버 오류 (" + proxyRes.status + ")"
+        );
       }
 
-      return extractReply(await proxyRes.json());
+      return extractReply(proxyData);
     }
 
     var res = await fetch(OPENAI_URL, {

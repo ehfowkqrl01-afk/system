@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="대구광역시 도시철도 역사별 무료 자전거 대여 현황을 실시간으로 확인하세요.">
+  <title>대구광역시 자전거 대여현황 | STAR Logis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;900&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bike-page">
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon" aria-hidden="true">❄</span>
+        STAR<span>Logis</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">홈</a>
+        <a href="bike-rental.html" class="nav-link active">자전거 대여</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="bike-hero">
+      <div class="container">
+        <p class="hero-badge">DAEGU METRO BIKE OPEN API</p>
+        <h1>대구광역시 <em>자전거</em> 대여현황</h1>
+        <p class="hero-desc">
+          대구교통공사 도시철도 역사 무료 자전거 대여 현황을 실시간으로 확인합니다.<br>
+          구·군을 선택하면 해당 지역 역사의 보유·대여 가능 대수를 한눈에 볼 수 있습니다.
+        </p>
+        <a href="index.html" class="btn btn-outline bike-back-link">← STAR Logis 홈으로</a>
+      </div>
+    </section>
+
+    <section class="section bike-list-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">DISTRICT</span>
+          <h2>구·군 선택</h2>
+          <p id="districtHint">지역을 선택하면 인근 지하철 역의 자전거 현황을 불러옵니다.</p>
+        </div>
+
+        <div class="bike-district-bar" id="districtBar" role="tablist" aria-label="구·군 선택"></div>
+
+        <div class="bike-summary" id="bikeSummary" hidden>
+          <article class="bike-summary-card">
+            <span class="bike-summary-label">대여 가능</span>
+            <strong id="sumAvailable">0</strong>
+            <span class="bike-summary-unit">대</span>
+          </article>
+          <article class="bike-summary-card">
+            <span class="bike-summary-label">총 보유</span>
+            <strong id="sumTotal">0</strong>
+            <span class="bike-summary-unit">대</span>
+          </article>
+          <article class="bike-summary-card">
+            <span class="bike-summary-label">대여 중</span>
+            <strong id="sumUsed">0</strong>
+            <span class="bike-summary-unit">대</span>
+          </article>
+          <article class="bike-summary-card">
+            <span class="bike-summary-label">운영 역</span>
+            <strong id="sumStations">0</strong>
+            <span class="bike-summary-unit">곳</span>
+          </article>
+        </div>
+
+        <div class="bike-toolbar">
+          <div class="bike-search-wrap">
+            <label for="bikeSearch" class="visually-hidden">역 검색</label>
+            <input type="search" id="bikeSearch" class="bike-search" placeholder="역 이름으로 검색…" autocomplete="off">
+          </div>
+          <button type="button" class="btn btn-outline bike-refresh-btn" id="bikeRefreshBtn">새로고침</button>
+        </div>
+
+        <div class="bike-status" id="bikeStatus" hidden>
+          <div class="bike-spinner" aria-hidden="true"></div>
+          <p>자전거 대여 현황을 불러오는 중…</p>
+        </div>
+
+        <div class="bike-error" id="bikeError" hidden role="alert">
+          <p id="bikeErrorMsg"></p>
+          <button type="button" class="btn btn-primary" id="bikeRetryBtn">다시 시도</button>
+        </div>
+
+        <div class="bike-grid" id="bikeGrid" aria-live="polite"></div>
+
+        <p class="bike-api-note">
+          데이터 출처:
+          <a href="http://www.dtro.or.kr" target="_blank" rel="noopener noreferrer">대구교통공사(dtro.or.kr)</a>
+          자전거대여현황 오픈 API · 도시철도 1·2호선 39개 역 운영
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="footer-logo">
+        <span class="logo-icon" aria-hidden="true">❄</span>
+        STAR<span>Logis</span>
+      </a>
+      <p class="footer-copy">&copy; 2026 STAR Logis. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="index.html">홈</a>
+        <a href="http://www.dtro.or.kr" target="_blank" rel="noopener noreferrer">대구교통공사</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="bike-rental.js"></script>
+</body>
+</html>
